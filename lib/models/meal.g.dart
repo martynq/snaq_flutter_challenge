@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'meals.dart';
+part of 'meal.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class MealsAdapter extends TypeAdapter<Meals> {
+class MealAdapter extends TypeAdapter<Meal> {
   @override
   final int typeId = 2;
 
   @override
-  Meals read(BinaryReader reader) {
+  Meal read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Meals(
+    return Meal(
       id: fields[0] as String?,
       created: fields[1] as String?,
       image: fields[2] as String?,
@@ -26,7 +26,7 @@ class MealsAdapter extends TypeAdapter<Meals> {
   }
 
   @override
-  void write(BinaryWriter writer, Meals obj) {
+  void write(BinaryWriter writer, Meal obj) {
     writer
       ..writeByte(5)
       ..writeByte(0)
@@ -47,7 +47,7 @@ class MealsAdapter extends TypeAdapter<Meals> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is MealsAdapter &&
+      other is MealAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -56,7 +56,7 @@ class MealsAdapter extends TypeAdapter<Meals> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-Meals _$MealsFromJson(Map<String, dynamic> json) => Meals(
+Meal _$MealFromJson(Map<String, dynamic> json) => Meal(
       id: json['id'] as String?,
       created: json['created'] as String?,
       image: json['image'] as String?,
@@ -68,7 +68,7 @@ Meals _$MealsFromJson(Map<String, dynamic> json) => Meals(
           .toList(),
     );
 
-Map<String, dynamic> _$MealsToJson(Meals instance) => <String, dynamic>{
+Map<String, dynamic> _$MealToJson(Meal instance) => <String, dynamic>{
       'id': instance.id,
       'created': instance.created,
       'image': instance.image,

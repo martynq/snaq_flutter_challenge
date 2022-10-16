@@ -17,7 +17,7 @@ class MealsListAdapter extends TypeAdapter<MealsList> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return MealsList(
-      meals: (fields[0] as List?)?.cast<Meals>(),
+      meals: (fields[0] as List?)?.cast<Meal>(),
     );
   }
 
@@ -46,7 +46,7 @@ class MealsListAdapter extends TypeAdapter<MealsList> {
 
 MealsList _$MealsListFromJson(Map<String, dynamic> json) => MealsList(
       meals: (json['meals'] as List<dynamic>?)
-          ?.map((e) => Meals.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Meal.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

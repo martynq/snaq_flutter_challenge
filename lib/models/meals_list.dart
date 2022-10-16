@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:snaq/hive/hive_adapters.dart';
-import 'package:snaq/models/meals.dart';
+import 'package:snaq/models/meal.dart';
 
 part 'meals_list.g.dart';
 
@@ -12,7 +12,7 @@ part 'meals_list.g.dart';
 @JsonSerializable()
 class MealsList {
   @HiveField(0)
-  final List<Meals>? meals;
+  final List<Meal>? meals;
 
   MealsList({
     this.meals,

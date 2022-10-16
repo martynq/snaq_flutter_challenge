@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:snaq/features/meals/presentation/widgets/check_list_card.dart';
-import 'package:snaq/models/meals.dart';
+import 'package:snaq/models/meal.dart';
 
 class FilteredList extends StatelessWidget {
   const FilteredList({
@@ -9,8 +9,8 @@ class FilteredList extends StatelessWidget {
     this.dislikeMeals,
   }) : super(key: key);
 
-  final List<Meals>? favouriteMeals;
-  final List<Meals>? dislikeMeals;
+  final List<Meal>? favouriteMeals;
+  final List<Meal>? dislikeMeals;
 
   @override
   Widget build(BuildContext context) {

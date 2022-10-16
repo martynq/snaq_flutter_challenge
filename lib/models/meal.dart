@@ -4,14 +4,14 @@ import 'package:snaq/hive/hive_adapters.dart';
 import 'package:snaq/models/meals_component.dart';
 import 'package:snaq/models/nutrition.dart';
 
-part 'meals.g.dart';
+part 'meal.g.dart';
 
 @HiveType(
-  typeId: HiveAdapters.adapterMeals,
-  adapterName: 'MealsAdapter',
+  typeId: HiveAdapters.adapterMeal,
+  adapterName: 'MealAdapter',
 )
 @JsonSerializable()
-class Meals {
+class Meal {
   @HiveField(0)
   final String? id;
   @HiveField(1)
@@ -23,7 +23,7 @@ class Meals {
   @HiveField(4)
   final List<MealComponents>? mealComponents;
 
-  Meals({
+  Meal({
     this.id,
     this.created,
     this.image,
@@ -31,7 +31,7 @@ class Meals {
     this.mealComponents,
   });
 
-  factory Meals.fromJson(Map<String, dynamic> json) => _$MealsFromJson(json);
+  factory Meal.fromJson(Map<String, dynamic> json) => _$MealFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MealsToJson(this);
+  Map<String, dynamic> toJson() => _$MealToJson(this);
 }

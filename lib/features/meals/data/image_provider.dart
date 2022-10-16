@@ -1,15 +1,13 @@
 import 'package:snaq/features/meals/data/image_helper.dart';
-import 'package:snaq/models/meals.dart';
 
 class MealProvider {
-  Future<String> saveImage(Meals meal) async {
+  Future<String> saveImage(String? id, String? image) async {
     String imageMeal = '';
 
-    if (meal.image != null) {
+    if (image != null) {
       imageMeal = await ImageHelper.downloadImage(
-        "meal${meal.id}",
-        meal.image ?? '',
-        meal.id ?? '',
+        "meal$id",
+        image,
       );
     }
     return imageMeal;

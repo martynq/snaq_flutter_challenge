@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:snaq/app/resources/strings/snaq_strings.dart';
 import 'package:snaq/features/meals/presentation/widgets/meal_card.dart';
-import 'package:snaq/models/meals.dart';
+import 'package:snaq/models/meal.dart';
 
 class LikedDislikedMealsScreen extends StatelessWidget {
   const LikedDislikedMealsScreen({
@@ -10,7 +10,7 @@ class LikedDislikedMealsScreen extends StatelessWidget {
     this.appBarTitle,
   }) : super(key: key);
 
-  final List<Meals>? meals;
+  final List<Meal>? meals;
   final String? appBarTitle;
 
   @override

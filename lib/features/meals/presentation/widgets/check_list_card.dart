@@ -2,7 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:snaq/app/resources/strings/snaq_strings.dart';
 import 'package:snaq/features/meals/presentation/screen/liked_disliked_meals_screen.dart';
-import 'package:snaq/models/meals.dart';
+import 'package:snaq/models/meal.dart';
 
 class CheckListCard extends StatelessWidget {
   const CheckListCard({
@@ -11,8 +11,8 @@ class CheckListCard extends StatelessWidget {
     this.dislikeMeals,
   }) : super(key: key);
 
-  final List<Meals>? favouriteMeals;
-  final List<Meals>? dislikeMeals;
+  final List<Meal>? favouriteMeals;
+  final List<Meal>? dislikeMeals;
 
   @override
   Widget build(BuildContext context) {

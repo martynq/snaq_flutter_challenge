@@ -7,9 +7,8 @@ class ImageHelper {
   static Future<String> downloadImage(
     String name,
     String imageUrl,
-    String id,
   ) async {
-    final filename = id + Uri.parse(imageUrl).pathSegments.last;
+    final filename = Uri.parse(imageUrl).pathSegments.last;
 
     final dir = (await getApplicationDocumentsDirectory()).path;
 

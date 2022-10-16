@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:snaq/features/meals/presentation/screen/meal_detail_screen.dart';
-import 'package:snaq/models/meals.dart';
+import 'package:snaq/features/meals/presentation/widgets/see_more_info_container.dart';
+import 'package:snaq/models/meal.dart';
 
 class MealCard extends StatelessWidget {
   const MealCard({
@@ -12,7 +13,7 @@ class MealCard extends StatelessWidget {
     this.smallCard = false,
   }) : super(key: key);
 
-  final Meals meal;
+  final Meal meal;
   final bool smallCard;
 
   @override
@@ -59,10 +60,15 @@ class MealCard extends StatelessWidget {
                             width: 50,
                             height: 50,
                           )
-                        : Image.file(
-                            File(
-                              meal.image ?? '',
-                            ),
+                        : Stack(
+                            children: [
+                              Image.file(
+                                File(
+                                  meal.image ?? '',
+                                ),
+                              ),
+                              SeeMoreInfoContainer(),
+                            ],
                           ),
                   ),
                 ),
