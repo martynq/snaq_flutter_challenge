@@ -1,8 +1,8 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:snaq/app/resources/strings/snaq_strings.dart';
 import 'package:snaq/features/meals/presentation/screen/liked_disliked_meals_screen.dart';
 import 'package:snaq/models/meals.dart';
-import 'package:snaq/resources/strings/snaq_strings.dart';
 
 class CheckListCard extends StatelessWidget {
   const CheckListCard({

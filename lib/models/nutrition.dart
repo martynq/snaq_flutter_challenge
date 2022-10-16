@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:snaq/hive/hive/hive_adapters.dart';
+import 'package:snaq/hive/hive_adapters.dart';
 import 'package:snaq/models/nutrients_detail.dart';
 
 part 'nutrition.g.dart';

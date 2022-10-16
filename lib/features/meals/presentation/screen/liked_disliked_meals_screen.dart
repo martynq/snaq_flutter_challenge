@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:snaq/app/resources/strings/snaq_strings.dart';
 import 'package:snaq/features/meals/presentation/widgets/meal_card.dart';
 import 'package:snaq/models/meals.dart';
-import 'package:snaq/resources/strings/snaq_strings.dart';
 
 class LikedDislikedMealsScreen extends StatelessWidget {
   const LikedDislikedMealsScreen({
@@ -19,7 +19,7 @@ class LikedDislikedMealsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           appBarTitle ?? '',
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
           ),
         ),

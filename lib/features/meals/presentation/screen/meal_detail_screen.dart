@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:snaq/app/resources/strings/snaq_strings.dart';
 import 'package:snaq/features/meals/presentation/widgets/nutrition_detail.dart';
 import 'package:snaq/models/meals.dart';
-import 'package:snaq/resources/strings/snaq_strings.dart';
 
 class MealDetailScreen extends StatelessWidget {
   const MealDetailScreen({
