@@ -6,10 +6,20 @@ class MealsInitial extends MealsState {}
 
 class MealsFailure extends MealsState {}
 
-class MealsLoaded extends MealsState {
+class MealsFiltered extends MealsState {
   final List<Meal>? meals;
   final List<Meal>? favouriteMeals;
   final List<Meal>? dislikeMeals;
 
-  MealsLoaded(this.meals, this.favouriteMeals, this.dislikeMeals);
+  MealsFiltered(this.meals, this.favouriteMeals, this.dislikeMeals);
+}
+
+class MealsLoaded extends MealsState {
+  final List<Meal>? meals;
+  final List<Meal>? filteredMeals;
+
+  MealsLoaded(
+    this.filteredMeals,
+    this.meals,
+  );
 }

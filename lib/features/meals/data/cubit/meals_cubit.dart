@@ -30,7 +30,10 @@ class MealsCubit extends Cubit<MealsState> {
           await hive.write<Meal>(HiveKeys.meals, meals.id ?? '', meals);
         }
       }
-      emit(MealsLoaded(mealsList.meals, [], []));
+      emit(MealsLoaded(
+        mealsList.meals,
+        mealsList.meals,
+      ));
     } catch (_) {
       List<Meal>? hiveMealsList = [];
       await hive.readAll<Meal>(HiveKeys.meals).then(
@@ -41,7 +44,7 @@ class MealsCubit extends Cubit<MealsState> {
             ),
           );
       if (hiveMealsList.isNotEmpty) {
-        emit(MealsLoaded(hiveMealsList, [], []));
+        emit(MealsFiltered(hiveMealsList, [], []));
       } else {
         emit(MealsFailure());
       }
@@ -49,28 +52,57 @@ class MealsCubit extends Cubit<MealsState> {
   }
 
   void addToFavouriteList(Meal meal) {
-    if (!(state as MealsLoaded).favouriteMeals!.contains(meal)) {
-      (state as MealsLoaded).favouriteMeals!.add(meal);
+    if (!(state as MealsFiltered).favouriteMeals!.contains(meal)) {
+      (state as MealsFiltered).favouriteMeals!.add(meal);
     }
     emit(
-      MealsLoaded(
-        (state as MealsLoaded).meals,
-        (state as MealsLoaded).favouriteMeals,
-        (state as MealsLoaded).dislikeMeals,
+      MealsFiltered(
+        (state as MealsFiltered).meals,
+        (state as MealsFiltered).favouriteMeals,
+        (state as MealsFiltered).dislikeMeals,
       ),
     );
   }
 
   void addToDislikeList(Meal meal) {
-    if (!(state as MealsLoaded).dislikeMeals!.contains(meal)) {
-      (state as MealsLoaded).dislikeMeals!.add(meal);
+    if (!(state as MealsFiltered).dislikeMeals!.contains(meal)) {
+      (state as MealsFiltered).dislikeMeals!.add(meal);
     }
     emit(
-      MealsLoaded(
-        (state as MealsLoaded).meals,
-        (state as MealsLoaded).favouriteMeals,
-        (state as MealsLoaded).dislikeMeals,
+      MealsFiltered(
+        (state as MealsFiltered).meals,
+        (state as MealsFiltered).favouriteMeals,
+        (state as MealsFiltered).dislikeMeals,
       ),
     );
+  }
+
+  void filterListBasedOnPreferences(String? ingredients) {
+    var filteredList = (state as MealsLoaded).filteredMeals;
+    for (var element in (state as MealsLoaded).meals!) {
+      for (var component in element.mealComponents!) {
+        component.mainIngredient!.name == ingredients;
+        filteredList!.remove(element);
+      }
+    }
+    emit(MealsLoaded(
+      (state as MealsLoaded).meals,
+      filteredList,
+    ));
+  }
+
+  void loadedState(List<String> ingredientsFiltered) async {
+    List<Meal> filteredList = (state as MealsLoaded).meals!;
+    for (var element in (state as MealsLoaded).meals!) {
+      var contains = (state as MealsLoaded)
+          .meals!
+          .toSet()
+          .intersection(filteredList.toSet())
+          .isNotEmpty;
+      if (contains) {
+        filteredList.remove(element);
+      }
+    }
+    emit(MealsFiltered(filteredList, [], []));
   }
 }

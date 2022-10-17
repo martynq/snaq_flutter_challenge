@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:snaq/app/resources/strings/snaq_strings.dart';
 import 'package:snaq/features/meals/data/cubit/meals_cubit.dart';
 import 'package:snaq/features/meals/data/cubit/meals_state.dart';
-import 'package:snaq/features/meals/presentation/screen/filtered_list.dart';
+import 'package:snaq/features/meals/presentation/widgets/filtered_list.dart';
 import 'package:snaq/features/meals/presentation/widgets/meal_card.dart';
 import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 
@@ -13,7 +13,7 @@ class MealsCardsView extends StatefulWidget {
     required this.state,
   }) : super(key: key);
 
-  final MealsLoaded state;
+  final MealsFiltered state;
 
   @override
   State<MealsCardsView> createState() => _MealsCardsViewState();
@@ -49,14 +49,26 @@ class _MealsCardsViewState extends State<MealsCardsView> {
                   .toList(),
             ],
             onCardSwiped: (dir, index, widgets) {
-              if (index <=
-                  widget.state.meals!.length -
-                      (widget.state.meals!.length - 3)) {
-                _cardController.addItem(MealCard(
-                  meal: widget.state.meals![index + 3],
-                ));
+              if (widget.state.meals!.length > 3) {
+                if (index >= 1 && index < widget.state.meals!.length - 2) {
+                  _cardController.addItem(MealCard(
+                    meal: widget.state.meals![index + 2],
+                  ));
+                }
+                if (index == widget.state.meals!.length) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FilteredList(
+                        favouriteMeals: widget.state.favouriteMeals,
+                        dislikeMeals: widget.state.dislikeMeals,
+                      ),
+                    ),
+                  );
+                }
               }
-              if (index == 6) {
+              if (widget.state.meals!.length <= 3 &&
+                  index == widget.state.meals!.length - 1) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -75,6 +87,8 @@ class _MealsCardsViewState extends State<MealsCardsView> {
                 BlocProvider.of<MealsCubit>(context)
                     .addToFavouriteList(widget.state.meals![index]);
               }
+
+              ;
             },
             enableSwipeUp: false,
             enableSwipeDown: false,
