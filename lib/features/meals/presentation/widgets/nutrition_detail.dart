@@ -7,6 +7,7 @@ class NutritionDetail extends StatelessWidget {
     Key? key,
     this.nutrition,
   }) : super(key: key);
+
   final Nutrition? nutrition;
 
   @override

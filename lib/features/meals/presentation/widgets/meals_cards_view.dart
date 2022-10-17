@@ -22,6 +22,7 @@ class MealsCardsView extends StatefulWidget {
 class _MealsCardsViewState extends State<MealsCardsView> {
   final SwipeableCardSectionController _cardController =
       SwipeableCardSectionController();
+  int count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +50,15 @@ class _MealsCardsViewState extends State<MealsCardsView> {
                   .toList(),
             ],
             onCardSwiped: (dir, index, widgets) {
+              bool pushToSummaryScreen =
+                  index == widget.state.meals!.length - 1;
               if (widget.state.meals!.length > 3) {
-                if (index >= 1 && index < widget.state.meals!.length - 2) {
+                if (index < widget.state.meals!.length - 3) {
                   _cardController.addItem(MealCard(
-                    meal: widget.state.meals![index + 2],
+                    meal: widget.state.meals![index + 3],
                   ));
                 }
-                if (index == widget.state.meals!.length) {
+                if (pushToSummaryScreen) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -67,8 +70,7 @@ class _MealsCardsViewState extends State<MealsCardsView> {
                   );
                 }
               }
-              if (widget.state.meals!.length <= 3 &&
-                  index == widget.state.meals!.length - 1) {
+              if (widget.state.meals!.length <= 3 && pushToSummaryScreen) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -87,8 +89,6 @@ class _MealsCardsViewState extends State<MealsCardsView> {
                 BlocProvider.of<MealsCubit>(context)
                     .addToFavouriteList(widget.state.meals![index]);
               }
-
-              ;
             },
             enableSwipeUp: false,
             enableSwipeDown: false,

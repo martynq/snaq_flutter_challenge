@@ -8,7 +8,7 @@ import 'package:snaq/hive/hive_cache.dart';
 import 'package:snaq/hive/hive_keys.dart';
 import 'package:snaq/models/meal.dart';
 import 'package:snaq/models/meals_list.dart';
-import 'package:snaq/services/food.dart';
+import 'package:snaq/services/meals.dart';
 
 class MealsCubit extends Cubit<MealsState> {
   MealsCubit() : super(MealsInitial()) {
@@ -33,7 +33,6 @@ class MealsCubit extends Cubit<MealsState> {
       }
       emit(MealsLoaded(
         mealsList.meals,
-        mealsList.meals,
       ));
     } catch (_) {
       List<Meal>? hiveMealsList = [];
@@ -45,7 +44,9 @@ class MealsCubit extends Cubit<MealsState> {
             ),
           );
       if (hiveMealsList.isNotEmpty) {
-        emit(MealsFiltered(hiveMealsList, [], []));
+        emit(MealsLoaded(
+          hiveMealsList,
+        ));
       } else {
         emit(MealsFailure());
       }
@@ -79,7 +80,7 @@ class MealsCubit extends Cubit<MealsState> {
   }
 
   void filterListBasedOnPreferences(String? ingredients) {
-    var filteredList = (state as MealsLoaded).filteredMeals;
+    var filteredList = (state as MealsLoaded).meals;
     for (var element in (state as MealsLoaded).meals!) {
       for (var component in element.mealComponents!) {
         component.mainIngredient!.name == ingredients;
@@ -88,7 +89,6 @@ class MealsCubit extends Cubit<MealsState> {
     }
     emit(MealsLoaded(
       (state as MealsLoaded).meals,
-      filteredList,
     ));
   }
 

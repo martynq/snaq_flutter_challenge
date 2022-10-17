@@ -6,10 +6,6 @@ class FoodService {
   final Dio dio = Dio(BaseOptions(baseUrl: basicUrl));
   final String _basePath = "meals/";
 
-  // FoodService() {
-  //   dio.interceptors.add(HttpInterceptor());
-  // }
-
   Future<MealsList> getFood() async {
     Response response = await dio.get(
       _basePath,

@@ -11,6 +11,7 @@ class UserPreferencesScreen extends StatefulWidget {
     Key? key,
     required this.meal,
   }) : super(key: key);
+
   final List<Meal> meal;
 
   @override
@@ -55,11 +56,12 @@ class _UserPreferencesScreenState extends State<UserPreferencesScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-                onPressed: () async {
-                  BlocProvider.of<MealsCubit>(context)
-                      .loadedState(eliminatedIngredients);
-                },
-                child: const Text(SnaqStrings.done)),
+              onPressed: () async {
+                BlocProvider.of<MealsCubit>(context)
+                    .loadedState(eliminatedIngredients);
+              },
+              child: const Text(SnaqStrings.done),
+            ),
           ),
         ],
       ),

@@ -16,10 +16,8 @@ class MealsFiltered extends MealsState {
 
 class MealsLoaded extends MealsState {
   final List<Meal>? meals;
-  final List<Meal>? filteredMeals;
 
   MealsLoaded(
-    this.filteredMeals,
     this.meals,
   );
 }

@@ -21,7 +21,10 @@ class SeeMoreInfoContainer extends StatelessWidget {
               textAlign: TextAlign.center,
               maxLines: 2,
               style: TextStyle(
-                  color: Colors.red, fontSize: 10, fontWeight: FontWeight.w800),
+                color: Colors.red,
+                fontSize: 10,
+                fontWeight: FontWeight.w800,
+              ),
             ),
           ),
         ),

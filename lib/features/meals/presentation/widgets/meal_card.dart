@@ -49,7 +49,9 @@ class MealCard extends StatelessWidget {
                 Text(meal.id ?? ''),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: 8, vertical: smallCard ? 5 : 0),
+                    horizontal: 8,
+                    vertical: smallCard ? 5 : 0,
+                  ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: smallCard
@@ -67,7 +69,7 @@ class MealCard extends StatelessWidget {
                                   meal.image ?? '',
                                 ),
                               ),
-                              SeeMoreInfoContainer(),
+                              const SeeMoreInfoContainer(),
                             ],
                           ),
                   ),

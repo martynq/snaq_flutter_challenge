@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class MealListItem extends StatelessWidget {
-  final bool isSelected;
-  final VoidCallback onTap;
-  final String ingredientsName;
-
   const MealListItem({
     Key? key,
     required this.isSelected,
     required this.onTap,
     required this.ingredientsName,
   }) : super(key: key);
+
+  final bool isSelected;
+  final VoidCallback onTap;
+  final String ingredientsName;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class MealListItem extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

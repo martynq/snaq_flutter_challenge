@@ -10,6 +10,7 @@ class MealDetailScreen extends StatelessWidget {
     Key? key,
     required this.meal,
   }) : super(key: key);
+
   final Meal meal;
 
   @override
