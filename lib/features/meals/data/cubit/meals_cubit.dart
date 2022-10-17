@@ -22,9 +22,8 @@ class MealsCubit extends Cubit<MealsState> {
       final MealsList mealsList = await FoodService().getFood();
 
       for (var element in mealsList.meals!) {
-        final mealImage =
+        element.image =
             await MealProvider().saveImage(element.id, element.image);
-        element.image = mealImage;
       }
       if (mealsList.meals != null && mealsList.meals!.isNotEmpty) {
         for (var meals in mealsList.meals!) {
