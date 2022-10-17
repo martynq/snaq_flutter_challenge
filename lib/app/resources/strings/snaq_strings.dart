@@ -9,4 +9,7 @@ class SnaqStrings {
   static const tapToSeeMore = 'Tap to see more';
   static const swipeInfo =
       'Swipe right if you like and left if you don\'t like this meal!';
+  static const preferencesInfo =
+      'Tap on any listed ingredient if you don\'t like or have allergy of them';
+  static const done = 'Done';
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:snaq/features/meals/data/cubit/meals_state.dart';
+import 'package:snaq/features/meals/data/filtered_list_helper.dart';
 import 'package:snaq/features/meals/data/image_provider.dart';
 import 'package:snaq/hive/hive_cache.dart';
 import 'package:snaq/hive/hive_keys.dart';
@@ -92,15 +93,11 @@ class MealsCubit extends Cubit<MealsState> {
   }
 
   void loadedState(List<String> ingredientsFiltered) async {
-    List<Meal> filteredList = (state as MealsLoaded).meals!;
-    for (var element in (state as MealsLoaded).meals!) {
-      var contains = (state as MealsLoaded)
-          .meals!
-          .toSet()
-          .intersection(filteredList.toSet())
-          .isNotEmpty;
-      if (contains) {
-        filteredList.remove(element);
+    List<Meal> filteredList = [];
+    for (var x in (state as MealsLoaded).meals!) {
+      if (FilteredListHelper.checkIfAddToFilteredList(ingredientsFiltered, x) ??
+          false) {
+        filteredList.add(x);
       }
     }
     emit(MealsFiltered(filteredList, [], []));
